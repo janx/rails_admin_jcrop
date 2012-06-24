@@ -1,0 +1,3 @@
+= form_tag nil, :method => :put, 'data-title' => "#{I18n.t('admin.actions.crop.menu').capitalize} #{abstract_model.model.human_attribute_name @field}" do
+  = image_tag @object.send(@field).url, :class => 'jcrop-subject'
+  = render :partial => 'rails_admin/main/submit_buttons'
