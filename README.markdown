@@ -5,14 +5,14 @@
 1. Add it to your Gemfile and run `bundle install`:
 
         gem 'rails_admin'
-        gem 'rails_admin_jcrop'
+        gem 'rails_admin_jcrop', git: 'git://github.com/janx/rails_admin_jcrop.git'
 
 2. Configure your model field to use Jcrop:
 
         # RAILS_ROOT/config/initializers/rails_admin.rb
         config.model User do
           configure :avatar, :jcrop
-    
+
           # Below is optional
           edit do
             field :avatar do

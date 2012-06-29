@@ -10,12 +10,13 @@ Gem::Specification.new do |s|
   s.authors     = ["Jan Xie"]
   s.email       = ["jan.h.xie@gmail.com"]
   s.homepage    = "https://github.com/janx/rails_admin_jcrop"
-  s.summary     = "Jcrop plugin for rails admin"
-  s.description = "Image cropping made easy!"
+  s.summary     = "Jcrop plugin for rails admin."
+  s.description = "#{s.summary} Image cropping made easy!"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
 
   s.add_dependency "rails", "~> 3.x"
+  s.add_dependency "rails_admin"
 
   s.add_development_dependency "sqlite3"
 end
