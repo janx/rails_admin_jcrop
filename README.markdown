@@ -31,7 +31,7 @@
 
 4. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
 
-![Cropping Screenshot](rails_admin_jcrop/screenshot.png)
+![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshot.png)
 
 ## TODO ##
 
