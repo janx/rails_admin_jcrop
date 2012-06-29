@@ -48,6 +48,7 @@
 
       dialog.find('img.jcrop-subject').Jcrop({
         bgColor: 'white',
+        keySupport: false,
         onSelect: widget.updateCoordinates
       });
 
