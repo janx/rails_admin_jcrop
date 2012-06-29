@@ -46,7 +46,10 @@
           cancelButtonText = dialog.find(":submit[name=_continue]").html();
       dialog.find('.form-actions').remove();
 
-      dialog.find('img.jcrop-subject').Jcrop({bgColor: 'white'});
+      dialog.find('img.jcrop-subject').Jcrop({
+        bgColor: 'white',
+        onSelect: widget.updateCoordinates
+      });
 
       form.attr("data-remote", true);
       dialog.find('.modal-header-title').text(form.data('title'));
@@ -68,31 +71,35 @@
           widget._bindFormEvents();
         } else {
           var json = $.parseJSON(data.responseText);
-          var option = '<option value="' + json.id + '" selected>' + json.label + '</option>';
           var select = widget.element.find('select').filter(":hidden");
 
-          if(widget.element.find('.filtering-select').length) { // select input
-            var input = widget.element.find('.filtering-select').children('.ra-filtering-select-input');
-            input.val(json.label);
-            if (!select.find('option[value=' + json.id + ']').length) { // not a replace
-              select.html(option).val(json.id);
-              widget.element.find('.update').removeClass('disabled');
-            }
-          } else { // multi-select input
-            var input = widget.element.find('.ra-filtering-select-input');
-            var multiselect = widget.element.find('.ra-multiselect');
-            if (multiselect.find('option[value=' + json.id + ']').length) { // replace
-              select.find('option[value=' + json.id + ']').text(json.label);
-              multiselect.find('option[value= ' + json.id + ']').text(json.label);
-            } else { // add
-              select.prepend(option);
-              multiselect.find('select.ra-multiselect-selection').prepend(option);
-            }
-          }
+          thumb = widget.element.find('a.jcrop_handle').data('thumb');
+          widget.element.find('a.thumbnail > img').removeAttr('src').attr('src', json.urls[thumb]);
+
           widget._trigger("success");
           dialog.modal("hide");
         }
       });
+    },
+
+    updateCoordinates: function(c) {
+      var rx = 100/c.w;
+      var ry = 100/c.h;
+      var lw = $('img.jcrop-subject').width();
+      var lh = $('img.jcrop-subject').height();
+      var ratio = $('img.jcrop-subject').data('geometry').split(',')[0] / lw ;
+
+      $('#preview').css({
+        width: Math.round(rx * lw) + 'px',
+        height: Math.round(ry * lh) + 'px',
+        marginLeft: '-' + Math.round(rx * c.x) + 'px',
+        marginTop: '-' + Math.round(ry * c.y) + 'px'
+      });
+
+      $("#crop_x").val(Math.round(c.x * ratio));
+      $("#crop_y").val(Math.round(c.y * ratio));
+      $("#crop_w").val(Math.round(c.w * ratio));
+      $("#crop_h").val(Math.round(c.h * ratio));
     },
 
     _getModal: function() {
