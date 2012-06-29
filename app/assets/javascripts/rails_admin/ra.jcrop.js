@@ -46,11 +46,12 @@
           cancelButtonText = dialog.find(":submit[name=_continue]").html();
       dialog.find('.form-actions').remove();
 
-      dialog.find('img.jcrop-subject').Jcrop({
+      var jcrop_options = $.extend({
         bgColor: 'white',
         keySupport: false,
         onSelect: widget.updateCoordinates
-      });
+      }, rails_admin_jcrop_options);
+      dialog.find('img.jcrop-subject').Jcrop(jcrop_options)
 
       form.attr("data-remote", true);
       dialog.find('.modal-header-title').text(form.data('title'));

@@ -1,14 +1,7 @@
 require "rails_admin_jcrop/engine"
 
 module RailsAdminJcrop
-end
 
-require 'rails_admin/config/actions'
-require 'rails_admin/config/actions/base'
-require 'rails_admin/config/fields'
-require 'rails_admin/config/fields/types/file_upload'
-
-module RailsAdmin
   module ActiveRecordMixin
     #http://stackoverflow.com/questions/5985079/carrierwave-crop-specific-version
     CropFields = [:crop_x, :crop_y, :crop_w, :crop_h, :crop_field]
@@ -45,9 +38,16 @@ module RailsAdmin
         end
       end
     end
-
   end
 
+end
+
+require 'rails_admin/config/actions'
+require 'rails_admin/config/actions/base'
+require 'rails_admin/config/fields'
+require 'rails_admin/config/fields/types/file_upload'
+
+module RailsAdmin
   module Config
     module Fields
       module Types
@@ -68,6 +68,10 @@ module RailsAdmin
 
           register_instance_option(:cache_method) do
             "#{name}_cache"
+          end
+
+          register_instance_option(:jcrop_options) do
+            {}
           end
 
           def resource_url(thumb = false)
