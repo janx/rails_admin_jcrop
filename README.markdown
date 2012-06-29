@@ -32,6 +32,17 @@
 4. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
 ![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshot.png)
 
+## Localization ##
+
+Localize the crop form by adding these entries:
+
+        zh:
+          admin:
+            actions:
+              crop:
+                title: '剪裁'
+                menu: '剪裁'
+
 ## TODO ##
 
 * Automatically include model mixin
