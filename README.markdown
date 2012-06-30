@@ -22,14 +22,7 @@
           end
         end
 
-3. Include a module in your Carrierwave models:
-
-        class User < ActiveRecord::Base
-           mount_uploader :avatar, AvatarUploader
-           include RailsAdminJcrop::ActiveRecordMixin # make sure you include the mixin after all mount_uploader declarations
-        end
-
-4. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
+3. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
 ![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshot.png)
 
 ## Localization ##
