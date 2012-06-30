@@ -5,7 +5,7 @@
 1. Add it to your Gemfile and run `bundle install`:
 
         gem 'rails_admin'
-        gem 'rails_admin_jcrop', git: 'git://github.com/janx/rails_admin_jcrop.git'
+        gem 'rails_admin_jcrop' #, git: 'git://github.com/janx/rails_admin_jcrop.git'
 
 2. Configure your model field to use Jcrop:
 

@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Jcrop plugin for rails admin."
   s.description = "#{s.summary} Image cropping made easy!"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
+  s.files = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
 
   s.add_dependency "rails", "~> 3.x"
   s.add_dependency "rails_admin"
