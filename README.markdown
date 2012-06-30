@@ -38,7 +38,6 @@ Localize the crop form by adding these entries:
 
 ## TODO ##
 
-* Automatically include model mixin
 * MongoDB support
 * Paperclip support
 * RMagick support
