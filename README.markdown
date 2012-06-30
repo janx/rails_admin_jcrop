@@ -22,7 +22,18 @@
           end
         end
 
-3. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
+3. Call :rails_admin_crop in your uploader:
+
+        class AvatarUploader < CarrierWave::Uploader::Base
+
+          version :thumb do
+            process :rails_admin_crop
+            process :resize_to_fill: [500,320]
+          end
+
+        end
+
+4. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
 ![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshot.png)
 
 ## Localization ##
