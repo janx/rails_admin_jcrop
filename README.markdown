@@ -36,11 +36,32 @@ Localize the crop form by adding these entries:
                 title: '剪裁'
                 menu: '剪裁'
 
+## Dependencies ##
+
+* MRI 1.9.3 (All above 1.8.6 should work, I only tested on 1.9.3)
+* Rails 3.x
+* ORM
+    - ActiveRecord
+* Upload plugin
+    - CarrierWave
+* Image processor
+    - MiniMagick
+
 ## TODO ##
 
 * MongoDB support
 * Paperclip support
 * RMagick support
+
+## Contributing ##
+
+Any help is encouraged. Here are some ways you can contribute:
+
+* by using it
+* by telling people this plugin
+* by reporting bugs or suggesting new features on github issue tracker
+* by fixing bugs or implementing features
+* by giving author a hug (especially if you're girl)
 
 ## Thanks ##
 
