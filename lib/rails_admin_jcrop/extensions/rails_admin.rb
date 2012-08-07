@@ -29,6 +29,10 @@ module RailsAdmin
           register_instance_option(:jcrop_options) do
             {}
           end
+          
+          register_instance_option(:fit_image) do
+            @fit_image ||= false
+          end
 
           def resource_url(thumb = false)
             return nil unless (uploader = bindings[:object].send(name)).present?
