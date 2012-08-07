@@ -2,11 +2,30 @@ module RailsAdmin
 
   class JcropController < RailsAdmin::ApplicationController
     skip_before_filter :get_model
-    before_filter :get_model, :get_object, :get_field
+    before_filter :get_model, :get_object, :get_field, :get_fit_image
 
     helper_method :abstract_model, :geometry
 
     def edit
+      @form_options = {}
+      @form_options[:method] = :put
+      @form_options[:'data-title'] = "#{I18n.t("admin.actions.crop.menu").capitalize} #{abstract_model.model.human_attribute_name @field}"
+      
+      @image_tag_options = {}
+      @image_tag_options[:class] = "jcrop-subject"
+      @image_tag_options[:'data-geometry'] = geometry(@object.send(@field).path).join(",")
+      
+      if @fit_image
+        fit_image_geometry = fit_image_geometry(@object.send(@field).path)
+        
+        @form_options[:'style'] = "margin-left: #{375 - (fit_image_geometry[0]/2) - 15}px;"
+        
+        @image_tag_options[:style] = ""
+        @image_tag_options[:style] << "width: #{fit_image_geometry[0]}px !important;"
+        @image_tag_options[:style] << "height: #{fit_image_geometry[1]}px !important;"
+        @image_tag_options[:style] << "border: 1px solid #AAA !important;"
+      end
+      
       respond_to do |format|
         format.html
         format.js   { render :edit, :layout => false }
@@ -35,12 +54,22 @@ module RailsAdmin
 
     private
 
+    def get_fit_image
+      @fit_image = params[:fit_image] == "true" ? true : false
+    end
+
     def get_field
       @field = params[:field]
     end
 
     def geometry(image_path)
       image = MiniMagick::Image.open(image_path)
+      [image[:width], image[:height]]
+    end
+    
+    def fit_image_geometry(image_path)
+      image = MiniMagick::Image.open(image_path)
+      image.resize "720x400"
       [image[:width], image[:height]]
     end
 
