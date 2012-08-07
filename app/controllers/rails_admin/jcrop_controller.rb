@@ -18,7 +18,7 @@ module RailsAdmin
       if @fit_image
         fit_image_geometry = fit_image_geometry(@object.send(@field).path)
         
-        @form_options[:'style'] = "margin-left: #{fit_image_geometry[1]/2 - 15}px;"
+        @form_options[:'style'] = "margin-left: #{375 - (fit_image_geometry[0]/2) - 15}px;"
         
         @image_tag_options[:style] = ""
         @image_tag_options[:style] << "width: #{fit_image_geometry[0]}px !important;"
