@@ -16,7 +16,6 @@
           # Below is optional
           edit do
             field :avatar do
-              # use jcrop_options to pass any options you like to .Jcrop call in javascript
               jcrop_options aspectRatio: 500.0/320.0
             end
           end
@@ -34,7 +33,35 @@
         end
 
 4. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
-![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshot.png)
+![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshots/example.png)
+
+## Field Options ##
+
+### jcrop_options ###
+
+You can pass any Jcrop plugin allowed options here, for example, use `aspectRatio` to fix the ratio of selection box:
+
+            field :avatar do
+              jcrop_options aspectRatio: 500.0/320.0
+            end
+
+Please check [Jcrop document](http://deepliquid.com/content/Jcrop_Manual.html#Setting_Options) for more available options.
+
+### fit_image ###
+
+By default, image is scaled properly to make cropping more easy, but sometimes the image is still too large to fit in the modal window, you may need to scroll image up/down to crop. If you set `fit_image` to true, image will always be resized to fit in modal window.
+
+            field :avatar do
+              fit_image true
+            end
+
+Check screenshots below to see the difference:
+
+When `fit_image` is false (default)
+![fit_image false](https://github.com/janx/rails_admin_jcrop/raw/master/screenshots/fit_image_false.png)
+
+When `fit_image` is true
+![fit_image true](https://github.com/janx/rails_admin_jcrop/raw/master/screenshots/fit_image_true.png)
 
 ## Localization ##
 
@@ -75,6 +102,12 @@ Any help is encouraged. Here are some ways you can contribute:
 * by giving author a hug (especially if you're girl)
 
 ## Thanks ##
+
+### Contributors ###
+
+* [Alan Rosin Sikora](https://github.com/alansikora) ([alansikora](https://github.com/alansikora))
+
+### And ... ###
 
 Life is easier with you.
 
