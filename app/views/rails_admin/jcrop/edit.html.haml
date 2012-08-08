@@ -1,5 +1,5 @@
-= form_tag nil, :method => :put, 'data-title' => "#{I18n.t('admin.actions.crop.menu').capitalize} #{abstract_model.model.human_attribute_name @field}" do
-  = image_tag @object.send(@field).url, :class => 'jcrop-subject', 'data-geometry' => geometry(@object.send(@field).path).join(',')
+= form_tag nil, @form_options do
+  = image_tag @object.send(@field).url, @image_tag_options
   = hidden_field_tag :crop_x
   = hidden_field_tag :crop_y
   = hidden_field_tag :crop_w
