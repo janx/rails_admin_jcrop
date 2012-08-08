@@ -58,9 +58,11 @@ By default, image is scaled properly to make cropping more easy, but sometimes t
 Check screenshots below to see the difference:
 
 When `fit_image` is false (default)
+
 ![fit_image false](https://github.com/janx/rails_admin_jcrop/raw/master/screenshots/fit_image_false.png)
 
 When `fit_image` is true
+
 ![fit_image true](https://github.com/janx/rails_admin_jcrop/raw/master/screenshots/fit_image_true.png)
 
 ## Localization ##
