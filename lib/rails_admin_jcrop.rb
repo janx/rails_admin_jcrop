@@ -1,3 +1,4 @@
+require "rails_admin_jcrop/detector"
 require "rails_admin_jcrop/engine"
 
 module RailsAdminJcrop
