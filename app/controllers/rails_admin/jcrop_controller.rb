@@ -1,4 +1,32 @@
+require "rails_admin_jcrop/detector"
+
 module RailsAdmin
+  module JcropControllerMiniMagick
+    def geometry(image_path)
+      image = MiniMagick::Image.open(image_path)
+      [image[:width], image[:height]]
+    end
+
+    def fit_image_geometry(image_path)
+      image = MiniMagick::Image.open(image_path)
+      # Magic number origin: https://github.com/janx/rails_admin_jcrop/pull/2
+      image.resize "720x400"
+      [image[:width], image[:height]]
+    end
+  end
+
+  module JcropControllerRMagick
+    def geometry(image_path)
+      image = Magick::Image.read(image_path).first
+      [image.columns, image.rows]
+    end
+
+    def fit_image_geometry(image_path)
+      image = Magick::Image.read(image_path).first
+      image = image.resize_to_fit 720, 400
+      [image.columns, image.rows]
+    end
+  end
 
   class JcropController < RailsAdmin::ApplicationController
     skip_before_filter :get_model
@@ -54,6 +82,8 @@ module RailsAdmin
 
     private
 
+    include ::RailsAdmin.const_get("JcropController#{RailsAdminJcrop::Detector.image_plugin}")
+
     def get_fit_image
       @fit_image = params[:fit_image] == "true" ? true : false
     end
@@ -62,17 +92,6 @@ module RailsAdmin
       @field = params[:field]
     end
 
-    def geometry(image_path)
-      image = MiniMagick::Image.open(image_path)
-      [image[:width], image[:height]]
-    end
-
-    def fit_image_geometry(image_path)
-      image = MiniMagick::Image.open(image_path)
-      # Magic number origin: https://github.com/janx/rails_admin_jcrop/pull/2
-      image.resize "720x400"
-      [image[:width], image[:height]]
-    end
 
     def cropping?
       [:crop_x, :crop_y, :crop_w, :crop_h].all? {|c| params[c].present?}
