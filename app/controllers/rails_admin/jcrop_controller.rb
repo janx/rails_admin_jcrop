@@ -42,7 +42,7 @@ module RailsAdmin
         format.js do
           asset = @object.send @field
           urls = {:original => asset.url}
-          @object.class.uploaders[@field.to_sym].versions.each {|name, _| urls[name] = asset.url(name)}
+          thumbnail_names.each {|name| urls[name] = asset.url(name)}
 
           render :json => {
             :id    => @object.id,
@@ -55,6 +55,15 @@ module RailsAdmin
     end
 
     private
+
+    def thumbnail_names
+      case RailsAdminJcrop::Detector.upload_plugin
+      when 'CarrierWave'
+        RailsAdminJcrop::Extensions::CarrierWave.thumbnail_names(@object, @field)
+      when 'Paperclip'
+        RailsAdminJcrop::Extensions::Paperclip.thumbnail_names(@object, @field)
+      end
+    end
 
     def get_fit_image
       @fit_image = params[:fit_image] == "true" ? true : false

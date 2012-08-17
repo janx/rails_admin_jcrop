@@ -1,3 +1,15 @@
+module RailsAdminJcrop
+  module Extensions
+    module CarrierWave
+      class <<self
+        def thumbnail_names(obj, field)
+          obj.class.uploaders[field.to_sym].versions.map(&:name)
+        end
+      end
+    end
+  end
+end
+
 module CarrierWave
   module Mount
     module Extension
