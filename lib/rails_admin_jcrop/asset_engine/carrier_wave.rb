@@ -4,6 +4,10 @@ module RailsAdminJcrop
       def thumbnail_names(obj, field)
         obj.class.uploaders[field.to_sym].versions.keys
       end
+
+      def crop!(obj, field)
+        obj.send(field).recreate_versions!
+      end
     end
 
     module CarrierWave

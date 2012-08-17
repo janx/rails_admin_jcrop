@@ -4,6 +4,10 @@ module RailsAdminJcrop
       def thumbnail_names(obj, field)
         obj.send(field).styles.keys
       end
+
+      def crop!(obj, field)
+        obj.send(field).reprocess!
+      end
     end
   end
 end
