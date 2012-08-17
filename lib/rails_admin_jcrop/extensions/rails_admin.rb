@@ -1,4 +1,3 @@
-require "rails_admin_jcrop/detector"
 require 'rails_admin/config/actions'
 require 'rails_admin/config/actions/base'
 require 'rails_admin/config/fields'
@@ -23,49 +22,7 @@ module RailsAdmin
             @fit_image ||= false
           end
 
-          module CarrierWave
-            def self.included(base)
-              base.register_instance_option(:cache_method) do
-                "#{name}_cache"
-              end
-
-              base.register_instance_option(:thumb_method) do
-                @thumb_method ||= ((versions = bindings[:object].send(name).versions.keys).find{|k| k.in?([:thumb, :thumbnail, 'thumb', 'thumbnail'])} || versions.first.to_s)
-              end
-
-              base.register_instance_option(:delete_method) do
-                "remove_#{name}"
-              end
-            end
-
-            def resource_url(thumb = false)
-              return nil unless (uploader = bindings[:object].send(name)).present?
-              thumb.present? ? uploader.send(thumb).url : uploader.url
-            end
-          end
-
-          module Paperclip
-            def self.included(base)
-              base.register_instance_option(:cache_method) do
-                nil
-              end
-
-              base.register_instance_option(:thumb_method) do
-                @thumb_method ||= ((styles = bindings[:object].send(name).styles.keys).find{|k| k.in?([:thumb, :thumbnail, 'thumb', 'thumbnail'])} || styles.first.to_s)
-              end
-
-              base.register_instance_option(:delete_method) do
-                nil
-              end
-            end
-
-            def resource_url(thumb = false)
-              return nil unless (attachment = bindings[:object].send(name)).present?
-              thumb.present? ? attachment.url(thumb) : attachment.url
-            end
-          end
-
-          include const_get(RailsAdminJcrop::Detector.upload_plugin)
+          include ::RailsAdmin::Config::Fields::Types::UploaderMethods
         end
       end
     end

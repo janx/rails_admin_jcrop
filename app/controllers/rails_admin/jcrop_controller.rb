@@ -57,12 +57,7 @@ module RailsAdmin
     private
 
     def thumbnail_names
-      case RailsAdminJcrop::Detector.upload_plugin
-      when 'CarrierWave'
-        RailsAdminJcrop::Extensions::CarrierWave.thumbnail_names(@object, @field)
-      when 'Paperclip'
-        RailsAdminJcrop::Extensions::Paperclip.thumbnail_names(@object, @field)
-      end
+      RailsAdminJcrop::AssetEngine.thumbnail_names(@object, @field)
     end
 
     def get_fit_image
