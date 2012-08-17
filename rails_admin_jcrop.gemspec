@@ -18,6 +18,4 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.x"
   s.add_dependency "rails_admin"
   s.add_dependency "mini_magick"
-
-  s.add_development_dependency "sqlite3"
 end

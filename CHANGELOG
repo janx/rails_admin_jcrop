@@ -1,0 +1,15 @@
+== 0.2.0 ==
+
+* support mongoid
+* support paperclip
+* new dependency: mini_magick
+* add fit_image option
+
+== 0.1.1 ==
+
+* fix id nil bug in route
+* update documents
+
+== 0.1.0 ==
+
+* rails_admin jcrop field with carrierwave, minimagick and active_record

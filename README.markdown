@@ -21,7 +21,7 @@
           end
         end
 
-3. Call :rails_admin_crop in your uploader:
+3. If you use Paperclip, you need to do nothing here, rails_admin_jcrop will append RailsAdminJcropper processor to your attachment automatically. If CarrierWave is used, please invoke  :rails_admin_crop in your uploader:
 
         class AvatarUploader < CarrierWave::Uploader::Base
 
@@ -80,28 +80,31 @@ Localize the crop form by adding these entries:
 
 * MRI 1.9.3 (All above 1.8.6 should work, I only tested on 1.9.3)
 * Rails 3.x
-* ORM
-    - ActiveRecord
-* Upload plugin
-    - CarrierWave
-* Image processor
-    - MiniMagick
+* MiniMagick
+
+## Supported ORM ##
+
+* ActiveRecord
+* Mongoid
+
+## Supported Asset Plugin ##
+
+* CarrierWave
+* Paperclip
 
 ## TODO ##
 
-* MongoDB support
-* Paperclip support
-* RMagick support
+* automate :rails_admin_crop for CarrierWave uploader
+
 
 ## Contributing ##
 
 Any help is encouraged. Here are some ways you can contribute:
 
 * by using it
-* by telling people this plugin
+* by telling people
 * by reporting bugs or suggesting new features on github issue tracker
 * by fixing bugs or implementing features
-* by giving author a hug (especially if you're girl)
 
 ## Thanks ##
 
