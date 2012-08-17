@@ -12,6 +12,24 @@ end
 
 module Paperclip
 
+  module NewClassMethods
+    def has_attached_file(*args)
+      super
+
+      self.attachment_definitions.each do |name, options|
+        options[:processors] ||= []
+        options[:processors] << :rails_admin_jcropper
+      end
+    end
+  end
+
+  module ClassMethods
+    def self.extended(base)
+      super
+      base.send :extend, ::Paperclip::NewClassMethods
+    end
+  end
+
   class RailsAdminJcropper < Thumbnail
     def transformation_command
       if @attachment.instance.rails_admin_cropping?

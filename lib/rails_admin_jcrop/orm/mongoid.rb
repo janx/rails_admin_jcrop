@@ -1,3 +1,11 @@
+module Mongoid
+  module Document
+    def self.included(base)
+      base.send(:include, RailsAdminJcrop::Orm::Mongoid)
+    end
+  end
+end
+
 module RailsAdminJcrop
   module Orm
     module Mongoid
@@ -7,12 +15,6 @@ module RailsAdminJcrop
       def self.included(base)
         base.send :attr_accessor, *CropFields
         base.after_update :rails_admin_crop_callback, :if => :rails_admin_cropping?
-
-        # paperclip
-        base.attachment_definitions.each do |name, options|
-          options[:processors] ||= []
-          options[:processors] << :rails_admin_jcropper
-        end
       end
 
       def rails_admin_crop_callback

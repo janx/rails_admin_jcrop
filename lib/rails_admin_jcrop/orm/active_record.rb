@@ -7,10 +7,6 @@ module RailsAdminJcrop
       def self.included(base)
         base.send :attr_accessor, *CropFields
         base.after_update :rails_admin_crop_callback, :if => :rails_admin_cropping?
-
-        base.uploaders.each do |name, klass|
-          klass.send :include, CarrierWaveUploaderMixin
-        end
       end
 
       def rails_admin_crop_callback
@@ -26,17 +22,8 @@ module RailsAdminJcrop
         save!
       end
 
-      module CarrierWaveUploaderMixin
-        def rails_admin_crop
-          return unless model.rails_admin_cropping?
-          manipulate! do |img|
-            geometry = "#{model.crop_w}x#{model.crop_h}+#{model.crop_x}+#{model.crop_y}"
-            img.crop geometry
-            img
-          end
-        end
-      end
-
     end
   end
 end
+
+ActiveRecord::Base.send(:include, RailsAdminJcrop::Orm::ActiveRecord)
