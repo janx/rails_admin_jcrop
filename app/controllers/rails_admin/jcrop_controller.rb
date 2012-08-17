@@ -1,3 +1,5 @@
+require 'mini_magick'
+
 module RailsAdmin
 
   class JcropController < RailsAdmin::ApplicationController
