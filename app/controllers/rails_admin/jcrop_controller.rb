@@ -68,7 +68,7 @@ module RailsAdmin
         format.js do
           asset = @object.send @field
           urls = {:original => asset.url}
-          thumbnail_names.each {|name| urls[name] = asset.url(name)}
+          @object.class.uploaders[@field.to_sym].versions.each {|name, _| urls[name] = asset.url(name)}
 
           render :json => {
             :id    => @object.id,
@@ -92,17 +92,9 @@ module RailsAdmin
       @field = params[:field]
     end
 
+
     def cropping?
       [:crop_x, :crop_y, :crop_w, :crop_h].all? {|c| params[c].present?}
-    end
-
-    def thumbnail_names
-      case RailsAdminJcrop::Detector.upload_plugin
-      when 'CarrierWave'
-        @object.class.uploaders[@field.to_sym].versions.map(&:name)
-      when 'Paperclip'
-        @object.send(@field).styles.keys
-      end
     end
   end
 
