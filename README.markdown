@@ -5,6 +5,10 @@
 1. Add it to your Gemfile and run `bundle install`:
 
         gem 'rails_admin'
+        # Because rails_admin_jcrop autoload modules by checking plugins you use, it's
+        # recommended to require it explictly before rails_admin_jcrop
+        # e.g. if you use carrierwave
+        # gem 'carrierwave', :require => 'carrierwave'
         gem 'rails_admin_jcrop' #, git: 'git://github.com/janx/rails_admin_jcrop.git'
 
 2. Configure your model field to use Jcrop:
@@ -94,8 +98,8 @@ Localize the crop form by adding these entries:
 
 ## TODO ##
 
+* make sure rails_admin_jcrop load after paperclip/carrierwave load
 * automate :rails_admin_crop for CarrierWave uploader
-
 
 ## Contributing ##
 
