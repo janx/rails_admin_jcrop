@@ -6,11 +6,6 @@ module RailsAdminJcrop
 
       def self.included(base)
         base.send :attr_accessor, *CropFields
-        base.after_update :rails_admin_crop_callback, :if => :rails_admin_cropping?
-      end
-
-      def rails_admin_crop_callback
-        ::RailsAdminJcrop::AssetEngine.crop!(self, self.crop_field)
       end
 
       def rails_admin_cropping?
@@ -19,7 +14,7 @@ module RailsAdminJcrop
 
       def rails_admin_crop!(params)
         CropFields.each {|f| self.send "#{f}=", params[f] }
-        save!
+        ::RailsAdminJcrop::AssetEngine.crop!(self, self.crop_field) if self.rails_admin_cropping?
       end
 
     end
