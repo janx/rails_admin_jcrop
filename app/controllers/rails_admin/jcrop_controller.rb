@@ -15,10 +15,17 @@ module RailsAdmin
 
       @image_tag_options = {}
       @image_tag_options[:class] = "jcrop-subject"
-      @image_tag_options[:'data-geometry'] = geometry(@object.send(@field).path).join(",")
+      # hack: check if using s3 storage
+      attachment = @object.send(@field)
+      image_path = if attachment.url.include?("s3.amazonaws.com")
+                     attachment.url
+                   else
+                     attachment.path
+                   end
+      @image_tag_options[:'data-geometry'] = geometry(image_path).join(",")
 
       if @fit_image
-        fit_image_geometry = fit_image_geometry(@object.send(@field).path)
+        fit_image_geometry = fit_image_geometry(image_path)
 
         @form_options[:'style'] = "margin-left: #{375 - (fit_image_geometry[0]/2) - 15}px;"
 
