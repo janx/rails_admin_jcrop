@@ -1,3 +1,9 @@
+== 0.2.2 ==
+
+* fix crop link handling to work with RA >= 0.3
+* updated to JCrop 0.9.12 to work with jQuery 1.9.x
+
+
 == 0.2.1 ==
 
 * compatible with paperclip > 3.1.4, fix infinite loop
