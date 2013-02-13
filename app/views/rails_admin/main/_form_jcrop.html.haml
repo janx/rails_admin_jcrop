@@ -11,7 +11,7 @@
   - if value = field.pretty_value
     = value
   = form.file_field(field.name, field.html_attributes.reverse_merge({ :data => { :fileupload => true } }))
-  = link_to 'Edit Image', '#', :data => {:link => jcrop_path(:model_name => form.object.class.to_param, :modal => true, :id => form.object.id, :field => field.name, :fit_image => field.fit_image), :thumb => field.thumb_method}, :style => 'display:none', :class => "jcrop_handle"
+  = link_to 'Edit Image', '#', :data => {:link => jcrop_path(:model_name => form.object.class.to_param, :modal => true, :id => form.object.id, :field => field.name, :fit_image => field.fit_image), :thumb => field.thumb_method}, :class => "jcrop_handle"
 - if field.optional? && field.errors.blank? && file && field.delete_method
   %a.btn.btn-info{:href => '#', :'data-toggle' => 'button', :onclick => "$(this).siblings('[type=checkbox]').click(); $(this).siblings('.toggle').toggle('slow'); jQuery(this).toggleClass('btn-danger btn-info'); return false"}
     %i.icon-white.icon-trash

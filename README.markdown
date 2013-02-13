@@ -36,7 +36,7 @@
 
         end
 
-4. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
+4. Done! Click the "Edit image" link below the image on your RailsAdmin model edit page and enjoy cropping!
 ![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshots/example.png)
 
 ## Field Options ##
