@@ -43,7 +43,7 @@
 
 `rails_admin_jcrop >= 1.0.0` works with `rails_admin ~> 0.3.x`.
 
-For older rails_admin, use rails_admin_jcrop 0.3.1.
+For older rails_admin, use rails_admin_jcrop 0.2.1.
 
 ## Field Options ##
 
