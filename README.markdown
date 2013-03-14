@@ -39,6 +39,12 @@
 4. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
 ![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshots/example.png)
 
+### Notice ###
+
+`rails_admin_jcrop >= 1.0.0` works with `rails_admin ~> 0.3.x`.
+
+For older rails_admin, use rails_admin_jcrop 0.3.1.
+
 ## Field Options ##
 
 ### jcrop_options ###
@@ -115,6 +121,7 @@ Any help is encouraged. Here are some ways you can contribute:
 ### Contributors ###
 
 * [Alan Rosin Sikora](https://github.com/alansikora) ([alansikora](https://github.com/alansikora))
+* [cec](https://github.com/cec)
 
 ### And ... ###
 
