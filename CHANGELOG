@@ -1,3 +1,13 @@
+== 1.1.0 ==
+
+* compatible with RMagick2
+
+== 1.0.0 ==
+
+* compatible with rails_admin > 0.3.0
+* upgrade jquery and jquery.jcrop libraries
+* patch jquery.jcrop to work fix a buggy bootstrap release
+
 == 0.2.1 ==
 
 * compatible with paperclip > 3.1.4, fix infinite loop
