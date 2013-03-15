@@ -39,11 +39,11 @@
 4. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
 ![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshots/example.png)
 
-### Notice ###
+### Tips ###
 
-`rails_admin_jcrop >= 1.0.0` works with `rails_admin ~> 0.3.x`.
-
-For older rails_admin, use rails_admin_jcrop 0.2.1.
+* Crop is done when you successfully return from the modal box, you don't need to save the whole record.
+* If you don't see the cropped image on rails admin edit page, the browser is possibly displaying cached version. Try refresh your browser.
+* `rails_admin_jcrop >= 1.0.0` works with `rails_admin ~> 0.3.x`. For older rails_admin, use rails_admin_jcrop 0.2.1.
 
 ## Field Options ##
 
