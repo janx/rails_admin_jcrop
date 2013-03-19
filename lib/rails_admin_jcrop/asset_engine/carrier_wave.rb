@@ -14,7 +14,8 @@ module RailsAdminJcrop
       def rails_admin_crop
         return unless model.rails_admin_cropping?
         manipulate! do |img|
-          ::RailsAdminJcrop::ImageHelper.crop(img, model.crop_w, model.crop_h, model.crop_x, model.crop_y)
+          geometry = "#{model.crop_w}x#{model.crop_h}+#{model.crop_x}+#{model.crop_y}"
+          img.crop geometry
           img
         end
       end
