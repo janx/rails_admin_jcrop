@@ -1,3 +1,7 @@
+== 1.1.2 ==
+
+* more strict rails_admin dependency description in gemspec
+
 == 1.1.1 ==
 
 * fix autoload issue
