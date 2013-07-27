@@ -1,3 +1,9 @@
+== 1.2.0 ==
+
+* fix image refresh after crop
+* only use carrierwave when both paperclip and carrierwave exist
+* work with both rails 3/4
+
 == 1.1.2 ==
 
 * more strict rails_admin dependency description in gemspec
