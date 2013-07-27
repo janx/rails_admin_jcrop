@@ -1,2 +1,5 @@
-require 'rails_admin_jcrop/asset_engine/carrier_wave' if defined?(::CarrierWave)
-require 'rails_admin_jcrop/asset_engine/paperclip' if defined?(::Paperclip)
+if defined?(::CarrierWave)
+  require 'rails_admin_jcrop/asset_engine/carrier_wave'
+elsif defined?(::Paperclip)
+  require 'rails_admin_jcrop/asset_engine/paperclip'
+end
