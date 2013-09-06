@@ -37,8 +37,8 @@ module Paperclip
       if @attachment.instance.rails_admin_cropping?
         ary = super
         if i = ary.index('-crop')
-          ary.delete_at i
           ary.delete_at i+1
+          ary.delete_at i
         end
         ['-crop', crop_params] + ary
       else
