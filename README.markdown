@@ -122,6 +122,7 @@ Any help is encouraged. Here are some ways you can contribute:
 
 * [Alan Rosin Sikora](https://github.com/alansikora) ([alansikora](https://github.com/alansikora))
 * [cec](https://github.com/cec)
+* [Alex Chien](https://github.com/AlexChien)
 
 ### And ... ###
 
