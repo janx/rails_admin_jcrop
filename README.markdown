@@ -4,37 +4,43 @@
 
 1. Add it to your Gemfile and run `bundle install`:
 
-        gem 'rails_admin'
-        # Because rails_admin_jcrop autoload modules by checking plugins you use, it's
-        # recommended to require it explictly before rails_admin_jcrop
-        # e.g. if you use carrierwave
-        # gem 'carrierwave', :require => 'carrierwave'
-        gem 'rails_admin_jcrop' #, git: 'git://github.com/janx/rails_admin_jcrop.git'
+```ruby
+gem 'rails_admin'
+# Because rails_admin_jcrop autoload modules by checking plugins you use, it's
+# recommended to require it explictly before rails_admin_jcrop
+# e.g. if you use carrierwave
+# gem 'carrierwave', :require => 'carrierwave'
+gem 'rails_admin_jcrop' #, git: 'git://github.com/janx/rails_admin_jcrop.git'
+```
 
 2. Configure your model field to use Jcrop:
 
-        # RAILS_ROOT/config/initializers/rails_admin.rb
-        config.model User do
-          configure :avatar, :jcrop
+```ruby
+# RAILS_ROOT/config/initializers/rails_admin.rb
+config.model User do
+  configure :avatar, :jcrop
 
-          # Below is optional
-          edit do
-            field :avatar do
-              jcrop_options aspectRatio: 500.0/320.0
-            end
-          end
-        end
+  # Below is optional
+  edit do
+    field :avatar do
+      jcrop_options aspectRatio: 500.0/320.0
+    end
+  end
+end
+```
 
 3. If you use Paperclip, you need to do nothing here, rails_admin_jcrop will append RailsAdminJcropper processor to your attachment automatically. If CarrierWave is used, please invoke  :rails_admin_crop in your uploader:
 
-        class AvatarUploader < CarrierWave::Uploader::Base
+```ruby
+class AvatarUploader < CarrierWave::Uploader::Base
 
-          version :thumb do
-            process :rails_admin_crop
-            process :resize_to_fill: [500,320]
-          end
+  version :thumb do
+    process :rails_admin_crop
+    process :resize_to_fill: [500,320]
+  end
 
-        end
+end
+```
 
 4. Done! Click the image on your RailsAdmin model edit page and enjoy cropping!
 ![Cropping Screenshot](https://github.com/janx/rails_admin_jcrop/raw/master/screenshots/example.png)
@@ -51,9 +57,11 @@
 
 You can pass any Jcrop plugin allowed options here, for example, use `aspectRatio` to fix the ratio of selection box:
 
-            field :avatar do
-              jcrop_options aspectRatio: 500.0/320.0
-            end
+```ruby
+field :avatar do
+  jcrop_options aspectRatio: 500.0/320.0
+end
+```
 
 Please check [Jcrop document](http://deepliquid.com/content/Jcrop_Manual.html#Setting_Options) for more available options.
 
@@ -61,9 +69,11 @@ Please check [Jcrop document](http://deepliquid.com/content/Jcrop_Manual.html#Se
 
 By default, image is scaled properly to make cropping more easy, but sometimes the image is still too large to fit in the modal window, you may need to scroll image up/down to crop. If you set `fit_image` to true, image will always be resized to fit in modal window.
 
-            field :avatar do
-              fit_image true
-            end
+```ruby
+field :avatar do
+  fit_image true
+end
+```
 
 Check screenshots below to see the difference:
 
