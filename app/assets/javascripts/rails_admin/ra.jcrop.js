@@ -47,12 +47,15 @@
           cancelButtonText = dialog.find(":submit[name=_continue]").html();
       dialog.find('.form-actions').remove();
 
+      var subject = dialog.find('img.jcrop-subject');
+      var geometry = subject.data('geometry').split(',').map(function (i) { return parseInt(i); });
       var jcrop_options = $.extend({
         bgColor: 'white',
         keySupport: false,
-        onSelect: widget.updateCoordinates
+        onSelect: widget.updateCoordinates,
+        trueSize: geometry
       }, rails_admin_jcrop_options);
-      dialog.find('img.jcrop-subject').Jcrop(jcrop_options)
+      subject.Jcrop(jcrop_options)
 
       form.attr("data-remote", true);
       dialog.find('.modal-header-title').text(form.data('title'));
