@@ -4,7 +4,7 @@ module RailsAdmin
 
   class JcropController < RailsAdmin::ApplicationController
     skip_before_filter :get_model
-    before_filter :get_model, :get_object, :get_field, :get_fit_image
+    before_filter :get_model, :get_object, :get_field, :get_image, :get_fit_image
 
     helper_method :abstract_model, :geometry
 
@@ -15,16 +15,16 @@ module RailsAdmin
 
       @image_tag_options = {}
       @image_tag_options[:class] = "jcrop-subject"
-      @image_tag_options[:'data-geometry'] = geometry(@object.send(@field).url).join(",")
+      @image_tag_options[:'data-geometry'] = geometry.join(",")
 
       if @fit_image
-        fit_image_geometry = fit_image_geometry(@object.send(@field).url)
+        fitted_geometry = fit_image_geometry
 
-        @form_options[:'style'] = "margin-left: #{375 - (fit_image_geometry[0]/2) - 15}px;"
+        @form_options[:'style'] = "margin-left: #{375 - (fitted_geometry[0]/2) - 15}px;"
 
         @image_tag_options[:style] = ""
-        @image_tag_options[:style] << "width: #{fit_image_geometry[0]}px !important;"
-        @image_tag_options[:style] << "height: #{fit_image_geometry[1]}px !important;"
+        @image_tag_options[:style] << "width: #{fitted_geometry[0]}px !important;"
+        @image_tag_options[:style] << "height: #{fitted_geometry[1]}px !important;"
         @image_tag_options[:style] << "border: 1px solid #AAA !important;"
       end
 
@@ -68,16 +68,18 @@ module RailsAdmin
       @field = params[:field]
     end
 
-    def geometry(image_path)
-      image = MiniMagick::Image.open(image_path)
-      [image[:width], image[:height]]
+    def get_image
+      @image = MiniMagick::Image.open(@object.send(@field).url)
     end
 
-    def fit_image_geometry(image_path)
-      image = MiniMagick::Image.open(image_path)
+    def geometry
+      [@image[:width], @image[:height]]
+    end
+
+    def fit_image_geometry
       # Magic number origin: https://github.com/janx/rails_admin_jcrop/pull/2
-      image.resize "720x400"
-      [image[:width], image[:height]]
+      @image.resize "720x400"
+      [@image[:width], @image[:height]]
     end
 
     def cropping?
