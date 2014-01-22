@@ -93,7 +93,6 @@
       var ry = 100/c.h;
       var lw = $('img.jcrop-subject').width();
       var lh = $('img.jcrop-subject').height();
-      var ratio = $('img.jcrop-subject').data('geometry').split(',')[0] / lw ;
 
       $('#preview').css({
         width: Math.round(rx * lw) + 'px',
@@ -102,10 +101,10 @@
         marginTop: '-' + Math.round(ry * c.y) + 'px'
       });
 
-      $("#crop_x").val(Math.round(c.x * ratio));
-      $("#crop_y").val(Math.round(c.y * ratio));
-      $("#crop_w").val(Math.round(c.w * ratio));
-      $("#crop_h").val(Math.round(c.h * ratio));
+      $("#crop_x").val(Math.round(c.x));
+      $("#crop_y").val(Math.round(c.y));
+      $("#crop_w").val(Math.round(c.w));
+      $("#crop_h").val(Math.round(c.h));
     },
 
     _getModal: function() {
