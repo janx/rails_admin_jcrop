@@ -47,12 +47,15 @@
           cancelButtonText = dialog.find(":submit[name=_continue]").html();
       dialog.find('.form-actions').remove();
 
+      var subject = dialog.find('img.jcrop-subject');
+      var geometry = subject.data('geometry').split(',').map(function (i) { return parseInt(i); });
       var jcrop_options = $.extend({
         bgColor: 'white',
         keySupport: false,
-        onSelect: widget.updateCoordinates
+        onSelect: widget.updateCoordinates,
+        trueSize: geometry
       }, rails_admin_jcrop_options);
-      dialog.find('img.jcrop-subject').Jcrop(jcrop_options)
+      subject.Jcrop(jcrop_options)
 
       form.attr("data-remote", true);
       dialog.find('.modal-header-title').text(form.data('title'));
@@ -90,7 +93,6 @@
       var ry = 100/c.h;
       var lw = $('img.jcrop-subject').width();
       var lh = $('img.jcrop-subject').height();
-      var ratio = $('img.jcrop-subject').data('geometry').split(',')[0] / lw ;
 
       $('#preview').css({
         width: Math.round(rx * lw) + 'px',
@@ -99,10 +101,10 @@
         marginTop: '-' + Math.round(ry * c.y) + 'px'
       });
 
-      $("#crop_x").val(Math.round(c.x * ratio));
-      $("#crop_y").val(Math.round(c.y * ratio));
-      $("#crop_w").val(Math.round(c.w * ratio));
-      $("#crop_h").val(Math.round(c.h * ratio));
+      $("#crop_x").val(Math.round(c.x));
+      $("#crop_y").val(Math.round(c.y));
+      $("#crop_w").val(Math.round(c.w));
+      $("#crop_h").val(Math.round(c.h));
     },
 
     _getModal: function() {
