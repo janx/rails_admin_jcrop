@@ -257,6 +257,14 @@
     function newTracker() //{{{
     {
       var trk = $('<div></div>').addClass(cssClass('tracker'));
+      if (options.margin) {
+        var margin = options.margin;
+        var marginTop = $('<div />').addClass(cssClass('margin-top')).css({height: margin});
+        var marginBottom = $('<div />').addClass(cssClass('margin-bottom')).css({height: margin});
+        var marginLeft = $('<div />').addClass(cssClass('margin-left')).css({width: margin});
+        var marginRight = $('<div />').addClass(cssClass('margin-right')).css({width: margin});
+        trk.append(marginTop).append(marginLeft).append(marginRight).append(marginBottom);
+      }
       if (is_msie) {
         trk.css({
           opacity: 0,
