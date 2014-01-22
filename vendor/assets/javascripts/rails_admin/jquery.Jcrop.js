@@ -254,10 +254,10 @@
       Selection.update();
     }
     //}}}
-    function newTracker() //{{{
+    function newTracker(preventMargin) //{{{
     {
       var trk = $('<div></div>').addClass(cssClass('tracker'));
-      if (options.margin) {
+      if (options.margin && !preventMargin) {
         var margin = options.margin;
         var marginTop = $('<div />').addClass(cssClass('margin-top')).css({height: margin});
         var marginBottom = $('<div />').addClass(cssClass('margin-bottom')).css({height: margin});
@@ -383,7 +383,7 @@
     }
 
     var bound = options.boundary;
-    var $trk = newTracker().width(boundx + (bound * 2)).height(boundy + (bound * 2)).css({
+    var $trk = newTracker(true).width(boundx + (bound * 2)).height(boundy + (bound * 2)).css({
       position: 'absolute',
       top: px(-bound),
       left: px(-bound),

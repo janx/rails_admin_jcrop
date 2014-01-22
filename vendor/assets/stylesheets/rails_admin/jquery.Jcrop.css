@@ -52,7 +52,7 @@
   width: 100%;
   position: absolute;
   background-color: black;
-  opacity: 0.4
+  opacity: 0.4;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
