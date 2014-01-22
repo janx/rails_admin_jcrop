@@ -51,23 +51,26 @@
   height: 100%;
   width: 100%;
   position: absolute;
-  background-color: black;
-  opacity: 0.4;
+  border: 3px dashed black;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
 }
 .jcrop-margin-top {
   top: 0;
+  border-width: 0 0 1px;
 }
 .jcrop-margin-left {
   left: 0;
+  border-width: 0 0 0 1px;
 }
 .jcrop-margin-right {
   right: 0;
+  border-width: 0 1px 0 0;
 }
 .jcrop-margin-bottom {
   bottom: 0;
+  border-width: 1px 0 0;
 }
 /* Selection Handles */
 .jcrop-handle {
