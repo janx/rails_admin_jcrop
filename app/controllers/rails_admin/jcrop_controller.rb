@@ -15,10 +15,10 @@ module RailsAdmin
 
       @image_tag_options = {}
       @image_tag_options[:class] = "jcrop-subject"
-      @image_tag_options[:'data-geometry'] = geometry(@object.send(@field).path).join(",")
+      @image_tag_options[:'data-geometry'] = geometry(@object.send(@field).url).join(",")
 
       if @fit_image
-        fit_image_geometry = fit_image_geometry(@object.send(@field).path)
+        fit_image_geometry = fit_image_geometry(@object.send(@field).url)
 
         @form_options[:'style'] = "margin-left: #{375 - (fit_image_geometry[0]/2) - 15}px;"
 
