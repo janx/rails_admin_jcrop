@@ -30,8 +30,8 @@ module RailsAdmin
 end
 
 RailsAdmin::Config::Fields.register_factory do |parent, properties, fields|
-  if properties[:name] == :jcrop
-    fields << RailsAdmin::Config::Fields::Types::Jcrop.new(parent, properties[:name], properties)
+  if (properties.respond_to?(:name) ? properties.name : properties[:name]) == :jcrop
+    fields << RailsAdmin::Config::Fields::Types::Jcrop.new(parent, :jcrop, properties)
     true
   else
     false
