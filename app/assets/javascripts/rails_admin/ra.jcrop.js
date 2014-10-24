@@ -51,7 +51,7 @@
         bgColor: 'white',
         keySupport: false,
         onSelect: widget.updateCoordinates
-      }, rails_admin_jcrop_options);
+      }, widget.element.find(".toggle:eq(0)").data("jcropOptions"));
       dialog.find('img.jcrop-subject').Jcrop(jcrop_options)
 
       form.attr("data-remote", true);
