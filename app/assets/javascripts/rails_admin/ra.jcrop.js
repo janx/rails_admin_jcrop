@@ -62,6 +62,7 @@
       }).html(cancelButtonText);
 
       dialog.find('.save-action').unbind().click(function(){
+        $(this).addClass('disabled');
         form.submit();
         return false;
       }).html(saveButtonText);
