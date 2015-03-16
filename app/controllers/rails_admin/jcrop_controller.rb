@@ -40,10 +40,12 @@ module RailsAdmin
 
       @image_tag_options[:'data-geometry'] = geometry(@file_path).join(",")
 
+      @form_options[:'style'] = 'overflow: auto;'
+
       if @fit_image_geometry
         fit_image_geometry = fit_image_geometry(@file_path)
 
-        @form_options[:'style'] = "margin-left: #{375 - (fit_image_geometry[0]/2) - 15}px;"
+        @form_options[:'style'] << "margin-left: #{375 - (fit_image_geometry[0]/2) - 15}px;"
 
         @image_tag_options[:style] = ""
         @image_tag_options[:style] << "width: #{fit_image_geometry[0]}px !important;"
