@@ -115,7 +115,7 @@
             backdrop: true,
             show: true
           })
-          .on('hidden', function(){
+          .on('hidden.bs.modal', function(){
             widget.dialog.remove();   // We don't want to reuse closed modals
             widget.dialog = null;
           });
