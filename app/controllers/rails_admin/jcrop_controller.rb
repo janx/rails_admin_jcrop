@@ -8,6 +8,12 @@ module RailsAdmin
 
     helper_method :abstract_model, :geometry
 
+    # These numbers are based on bootstrap defaults
+    # https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+    # width: $modal-lg(900px) - 2 * border(1px) - 2 * $modal-inner-padding(15px)
+    # height: width * 9/16 (16:9 format)
+    FIT_IMAGE_DIMENSIONS = [868, 489]
+
     def edit
       @form_options = {}
       @form_options[:method] = :put
@@ -40,10 +46,12 @@ module RailsAdmin
 
       @image_tag_options[:'data-geometry'] = geometry(@file_path).join(",")
 
+      @form_options[:'style'] = 'overflow: auto;'
+
       if @fit_image_geometry
         fit_image_geometry = fit_image_geometry(@file_path)
 
-        @form_options[:'style'] = "margin-left: #{375 - (fit_image_geometry[0]/2) - 15}px;"
+        @form_options[:'style'] << "margin-left: #{(FIT_IMAGE_DIMENSIONS[0] - fit_image_geometry[0])/2}px;"
 
         @image_tag_options[:style] = ""
         @image_tag_options[:style] << "width: #{fit_image_geometry[0]}px !important;"
@@ -84,7 +92,7 @@ module RailsAdmin
     end
 
     def get_fit_image
-      @fit_image = params[:fit_image] == "true" ? true : false
+      @fit_image_geometry = params[:fit_image] == "true" ? true : false
     end
 
     def get_field
@@ -98,8 +106,7 @@ module RailsAdmin
 
     def fit_image_geometry(image_path)
       image = MiniMagick::Image.open(image_path)
-      # Magic number origin: https://github.com/janx/rails_admin_jcrop/pull/2
-      image.resize "720x400"
+      image.resize FIT_IMAGE_DIMENSIONS.join('x')
       [image[:width], image[:height]]
     end
 
