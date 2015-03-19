@@ -5,7 +5,7 @@
       var widget = this;
       var dom_widget = widget.element;
 
-      var thumbnailLink = dom_widget.find('img.img-polaroid').parent();
+      var thumbnailLink = dom_widget.find('img[class^=img-]').parent();
       thumbnailLink.unbind().bind("click", function(e){
         widget._bindModalOpening(e, dom_widget.find('a.jcrop_handle').data('link'));
         return false;
