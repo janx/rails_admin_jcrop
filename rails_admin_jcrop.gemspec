@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
 
   s.add_dependency "rails", "~> 4.0"
-  s.add_dependency "rails_admin", ">= 0.6.6"
+  s.add_dependency "rails_admin", ">= 0.6.5"
   s.add_dependency "mini_magick"
 end
