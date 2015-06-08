@@ -5,7 +5,7 @@
       var widget = this;
       var dom_widget = widget.element;
 
-      var thumbnailLink = dom_widget.find('img.img-polaroid').parent();
+      var thumbnailLink = dom_widget.find('img.img-polaroid, img.img-thumbnail').first().parent(); // workaround for different bootstrap versions using a different class for thumbnails
       thumbnailLink.unbind().bind("click", function(e){
         widget._bindModalOpening(e, dom_widget.find('a.jcrop_handle').data('link'));
         return false;
@@ -62,6 +62,7 @@
       }).html(cancelButtonText);
 
       dialog.find('.save-action').unbind().click(function(){
+        $(this).addClass('disabled');
         form.submit();
         return false;
       }).html(saveButtonText);
@@ -108,13 +109,13 @@
     _getModal: function() {
       var widget = this;
       if (!widget.dialog) {
-          widget.dialog = $('<div id="modal" class="modal fade"><div class="modal-header"><a href="#" class="close" data-dismiss="modal">&times;</a><h3 class="modal-header-title">...</h3></div><div class="modal-body">...</div><div class="modal-footer"><a href="#" class="btn cancel-action">...</a><a href="#" class="btn btn-primary save-action">...</a></div></div>');
+          widget.dialog = $('<div id="modal" class="modal fade"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><a href="#" class="close" data-dismiss="modal">&times;</a><h3 class="modal-header-title">...</h3></div><div class="modal-body">...</div><div class="modal-footer"><a href="#" class="btn cancel-action">...</a><a href="#" class="btn btn-primary save-action">...</a></div></div></div></div>');
           widget.dialog.modal({
             keyboard: true,
             backdrop: true,
             show: true
           })
-          .on('hidden', function(){
+          .on('hidden.bs.modal', function(){
             widget.dialog.remove();   // We don't want to reuse closed modals
             widget.dialog = null;
           });
