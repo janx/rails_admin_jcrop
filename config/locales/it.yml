@@ -1,0 +1,7 @@
+it:
+  admin:
+    actions:
+      crop:
+        title: Crop
+        menu: Crop
+        breadcrumb: Crop
