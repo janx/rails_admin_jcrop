@@ -25,7 +25,7 @@ module RailsAdmin
       #Condition for Carrierwave.
       if @object.send(@field).class.to_s =~ /Uploader/
 
-        if @object.send(@field)._storage.to_s =~ /Fog/ ||
+        if @object.send(@field)._storage.to_s =~ /Fog|AWS/ ||
            @object.send(@field)._storage.to_s =~ /SFTP/ ||
            @object.send(@field)._storage.to_s =~ /FTP/
 
