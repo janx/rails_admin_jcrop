@@ -20,7 +20,7 @@ module Paperclip
 
       self.attachment_definitions.each do |name, options|
         options[:processors] ||= []
-        options[:processors] << :rails_admin_jcropper
+        options[:processors] << :rails_admin_jcropper if options[:processors].empty?
       end
     end
   end

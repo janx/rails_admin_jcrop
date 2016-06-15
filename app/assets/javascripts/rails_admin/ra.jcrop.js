@@ -5,7 +5,7 @@
       var widget = this;
       var dom_widget = widget.element;
 
-      var thumbnailLink = dom_widget.find('img.img-polaroid, img.img-thumbnail').first().parent(); // workaround for different bootstrap versions using a different class for thumbnails
+      var thumbnailLink = dom_widget.find('.toggle a[target="_blank"]');
       thumbnailLink.unbind().bind("click", function(e){
         widget._bindModalOpening(e, dom_widget.find('a.jcrop_handle').data('link'));
         return false;
@@ -55,7 +55,7 @@
       dialog.find('img.jcrop-subject').Jcrop(jcrop_options)
 
       form.attr("data-remote", true);
-      dialog.find('.modal-header-title').text(form.data('title'));
+      dialog.find('.modal-header .modal-title').text(form.data('title'));
       dialog.find('.cancel-action').unbind().click(function(){
         dialog.modal('hide');
         return false;
@@ -109,7 +109,8 @@
     _getModal: function() {
       var widget = this;
       if (!widget.dialog) {
-          widget.dialog = $('<div id="modal" class="modal fade"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><a href="#" class="close" data-dismiss="modal">&times;</a><h3 class="modal-header-title">...</h3></div><div class="modal-body">...</div><div class="modal-footer"><a href="#" class="btn cancel-action">...</a><a href="#" class="btn btn-primary save-action">...</a></div></div></div></div>');
+          //widget.dialog = $('<div id="modal" class="modal fade"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><a href="#" class="close" data-dismiss="modal">&times;</a><h3 class="modal-header-title">...</h3></div><div class="modal-body">...</div><div class="modal-footer"><a href="#" class="btn cancel-action">...</a><a href="#" class="btn btn-primary save-action">...</a></div></div></div></div>');
+          widget.dialog = $('<div class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog ra-jcrop"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h4 class="modal-title">...</h4> </div><div class="modal-body">...</div><div class="modal-footer"> <button type="button" class="btn btn-primary save-action">...</button> <button type="button" class="btn btn-default cancel-action" data-dismiss="modal">...</button> </div></div></div></div>')
           widget.dialog.modal({
             keyboard: true,
             backdrop: true,
