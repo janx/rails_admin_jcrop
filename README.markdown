@@ -9,7 +9,9 @@ gem 'rails_admin'
 # Because rails_admin_jcrop autoload modules by checking plugins you use, it's
 # recommended to require it explictly before rails_admin_jcrop
 # e.g. if you use carrierwave
-# gem 'carrierwave', :require => 'carrierwave'
+# gem 'carrierwave'
+# or
+# gem 'paperclip'
 gem 'rails_admin_jcrop' #, git: 'git://github.com/janx/rails_admin_jcrop.git'
 ```
 
