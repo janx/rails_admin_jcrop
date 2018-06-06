@@ -37,9 +37,18 @@ module Paperclip
       if @attachment.instance.rails_admin_cropping?
         ary = super
         if i = ary.index('-crop')
+          ary_original = ary.dup
           ary.delete_at i+1
           ary.delete_at i
+
+          params     = (['-crop', crop_params] + ary).join(' ')
+          style_name = @attachment.styles.keys[@attachment.styles.values.map(&:geometry).index(@target_geometry.to_s)]
+          image      = @attachment.instance.send(@attachment.name).path(style_name)
+
+          system "convert '#{@file.path}' #{params} '#{image}'"
+          return ary_original
         end
+
         ['-crop', crop_params] + ary
       else
         super
